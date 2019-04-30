@@ -1,0 +1,9 @@
+spring:
+  jpa:
+    database: POSTGRESQL
+    hibernate:
+      dialect: org.hibernate.dialect.PostgreSQLDialect
+    properties.hibernate.temp.use_jdbc_metadata_defaults: false
+    properties.jdbc.lob.non_contextual_creation: true
+  datasource:
+    driver-class-name: org.postgresql.Driver

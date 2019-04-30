@@ -1,0 +1,53 @@
+<div class="modal fade" id="modal-contact" tabindex="-1" role="dialog" aria-labelledby="modal-contact-title"
+    aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="modal-contact-title">New Contact</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body" style="overflow-y: auto; height: 400px;">
+                <div class="container">
+                    <form #contactForm="ngForm">
+                        <div class="form-group" [hidden]="!contact.id">
+                            <label for="id">ID</label>
+                            <input type="text" class="form-control" id="id" name="id" [(ngModel)]="contact.id"
+                                readonly />
+                        </div>
+                        <div class="form-group">
+                            <label class="form-control-label" for="firstName">First Name</label>
+                            <input type="text" class="form-control" name="firstName" id="firstName" required
+                                [(ngModel)]="contact.firstName" #firstName="ngModel" />
+                            <div [hidden]="firstName?.valid || firstName?.pristine" class="alert alert-danger">
+                                First Name is required
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-control-label" for="lastName">Last Name</label>
+                            <input type="text" class="form-control" name="lastName" id="lastName" required
+                                [(ngModel)]="contact.lastName" #lastName="ngModel" />
+                            <div [hidden]="lastName?.valid || lastName?.pristine" class="alert alert-danger">
+                                Last Name is required
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-control-label" for="phone">Phone</label>
+                            <input type="tel" class="form-control" name="phone" id="phone" required
+                                [(ngModel)]="contact.phone" #phone="ngModel" />
+                            <div [hidden]="phone?.valid || phone?.pristine" class="alert alert-danger">
+                                Phone is required
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default pull-left" data-dismiss="modal" #btnClose>Close</button>
+                <button type="button" class="btn btn-primary" [disabled]="contactForm.form.invalid || isSaving"
+                    (click)="save()">Add Contact</button>
+            </div>
+        </div>
+    </div>
+</div>

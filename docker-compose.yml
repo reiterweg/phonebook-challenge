@@ -1,0 +1,31 @@
+version: '3.7'
+
+services:
+
+  pb-phonebook:
+    build:
+      context: ./
+      dockerfile: ./docker/Dockerfile
+    container_name: pb-phonebook
+    ports:
+      - 8080:8080
+    links:
+      - pb-postgresql
+    environment:
+      - SPRING_OUTPUT_ANSI_ENABLED=ALWAYS
+      - SPRING_DATASOURCE_URL=${DATASOURCE_URL}
+      - SPRING_DATASOURCE_USERNAME=${DATASOURCE_USERNAME}
+      - SPRING_DATASOURCE_PASSWORD=${DATASOURCE_PASSWORD}
+
+  pb-postgresql:
+    image: postgres:10.4
+    container_name: pb-postgresql
+    ports:
+      - 5432:5432
+    volumes:
+      - ./src/main/resources/sql/init.sql:/docker-entrypoint-initdb.d/01.sql
+      - ~/volumes/phonebook/postgresql/:/var/lib/postgresql/data/
+    environment:
+      - POSTGRES_USER=${DATASOURCE_USERNAME}
+      - POSTGRES_PASSWORD=${DATASOURCE_PASSWORD}
+      - POSTGRES_DB=${DATASOURCE_DATABASE}

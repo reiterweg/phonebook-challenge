@@ -1,0 +1,28 @@
+body {
+  background: url(../img/background.jpg) no-repeat;
+  background-size: cover;
+}
+
+.phonebook {
+  .phonebook-logo {
+    width: 200px;
+    padding: 0px 15px 0px;
+  }
+  .phonebook-version {
+    font-size: 0.75em;
+    font-weight: bold;
+    font-style: italic;
+    color: #ddd;
+  }
+}
+
+.card {
+  .card-header {
+    h2 {
+      color: #777;
+      i {
+        color: #0078e7;
+      }
+    }
+  }
+}
